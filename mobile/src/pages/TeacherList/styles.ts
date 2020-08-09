@@ -6,6 +6,31 @@ const styles = StyleSheet.create ({
         backgroundColor: '#f0f0f7',
     },
 
+    filterBlock:{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingRight: 5,
+        paddingBottom: 18,
+    },
+
+    upDown:{
+        flexDirection: 'row',
+    },
+
+    filtersText: {
+        paddingRight: 40,
+        color: '#D4C2FF',
+        fontFamily: 'Archivo_400Regular',
+        fontSize: 16
+    },
+
+    line: {
+        borderTopColor: '#9871F5',
+        borderTopWidth: 1,
+        paddingBottom: 18
+    },
+
     teacherList: {
         marginTop: -40,
     },
@@ -26,6 +51,10 @@ const styles = StyleSheet.create ({
 
     inputBlock: {
         width: '48%'
+    },
+
+    filterButton:{
+        backgroundColor: '#6842C2',
     },
 
     input: {

@@ -1,8 +1,9 @@
 import React, { useState} from 'react';
-import { View, ScrollView, Text, TextInput } from 'react-native';
+import { View, ScrollView, Text, TextInput, Picker } from 'react-native';
 import { BorderlessButton, RectButton } from 'react-native-gesture-handler';
-import { Feather } from '@expo/vector-icons';
+import { Feather, AntDesign } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-community/async-storage'
+import { useFocusEffect } from '@react-navigation/native';
 
 import PageHeader from '../../components/PageHeader';
 import TeacherItem, { Teacher } from '../../components/TeacherItem';
@@ -10,13 +11,12 @@ import TeacherItem, { Teacher } from '../../components/TeacherItem';
 import api from '../../services/api';
 
 import styles from './styles'
-import { useFocusEffect } from '@react-navigation/native';
 
 function TeacherList() {
     const [teachers, setTeachers] = useState([]);
     const [favorites, setFavorites] = useState<number[]>([]);
     const [isFiltersVisible, setIsFiltersVisible] = useState(false);
-
+    
     const [subject, setSubject] = useState('');
     const [week_day, setWeekDay] = useState('');
     const [time, setTime] = useState('');
@@ -35,7 +35,7 @@ function TeacherList() {
         });
     }
 
-    // não funcionou, caso eu tire desfavorite na página de favoritos
+    // não funcionou, caso eu desfavorite na página de favoritos
     useFocusEffect(() => {
         loadFavorites();
     });
@@ -61,14 +61,21 @@ function TeacherList() {
 
     return (
         <View style={styles.container}>
-            <PageHeader 
+            <PageHeader
                 title="Proffys disponíveis" 
-                headerRight={(
-                    <BorderlessButton onPress={handleToggleFiltersVisible}>
-                        <Feather name="filter" size={20} color="#FFF" />
-                    </BorderlessButton>
-                )}
             >
+                <View>
+                    <BorderlessButton onPress={handleToggleFiltersVisible} style={styles.filterBlock}>
+                        <Feather name="filter" size={30} color="#04D361" />
+                        <Text style={styles.filtersText}>Filtrar por dia, hora e matéria</Text>
+                        <View style={styles.upDown}>
+                            <AntDesign name="up" size={15} color="#A380F6" />
+                            <AntDesign name="down" size={15} color="#A380F6" />
+                        </View>
+                    </BorderlessButton>
+                    <View style={styles.line} />
+                </View>
+                
                 { isFiltersVisible && (
                     <View style={styles.searchForm}>
                         <Text style={styles.label}>Matéria</Text>

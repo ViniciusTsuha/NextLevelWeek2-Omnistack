@@ -16,7 +16,7 @@ function TeacherList () {
     const [week_day, setWeek_day] = useState('');
     const [time, setTime] = useState('');
 
-    async function serachTeachers(e: FormEvent) {
+    async function searchTeachers(e: FormEvent) {
         e.preventDefault();
 
         const response = await api.get('/classes', {
@@ -34,7 +34,7 @@ function TeacherList () {
     return (
         <div id="page-teacher-list" className="container">
             <PageHeader title="Estes são os proffys disponíveis.">
-                <form id="search-teachers" onSubmit={serachTeachers}>
+                <form id="search-teachers" onSubmit={searchTeachers}>
                     <Select
                         name="subject" 
                         label="Matéria"
